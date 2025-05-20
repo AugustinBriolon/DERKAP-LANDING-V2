@@ -79,7 +79,6 @@ export default function Testimonials() {
       </div>
       <p className="text-white-second max-w-lg text-xl text-pretty">
         Pas besoin de blabla, on laisse parler ceux qui s'envoient déjà des défis tous les jours.
-        <br /> Spoiler : ils kiffent.
       </p>
 
       <div className="mt-8 flex justify-center gap-4">
