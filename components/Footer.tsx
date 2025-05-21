@@ -20,15 +20,15 @@ export default function Footer() {
         <div className="col-span-2 row-start-2 flex flex-col gap-4 md:flex-row">
           <p
             className="text-white-second cursor-pointer text-lg transition-all duration-300 hover:text-white"
-            onClick={() => scrollToNextSection('#temoignages')}
-          >
-            Témoignages
-          </p>
-          <p
-            className="text-white-second cursor-pointer text-lg transition-all duration-300 hover:text-white"
             onClick={() => scrollToNextSection('#comment-ca-marche')}
           >
             Comment ça marche
+          </p>
+          <p
+            className="text-white-second cursor-pointer text-lg transition-all duration-300 hover:text-white"
+            onClick={() => scrollToNextSection('#temoignages')}
+          >
+            Témoignages
           </p>
         </div>
 

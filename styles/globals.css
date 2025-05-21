@@ -18,8 +18,8 @@ body {
 }
 
 *::selection {
-  background-color: var(--color-primary-second);
-  color: var(--black);
+  background-color: var(--color-primary);
+  color: var(--white);
 }
 
 .navbar-back-gradient {    

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Section from './Section';
 
 export default function HowItWorks() {
@@ -17,18 +16,9 @@ export default function HowItWorks() {
           <div className="flex items-start gap-8 md:items-center">
             <p className="text-9xl font-bold md:text-[15rem]">1</p>
             <div className="flex flex-col justify-between gap-8">
-              <p className="text-5xl font-bold">Créez votre compte</p>
-              <p className="text-xl">Depuis l'application, créez votre compte ou connectez-vous.</p>
+              <p className="text-5xl font-bold">Crée ton compte en 2-2.</p>
+              <p className="text-xl">Depuis l'application, crées ton compte et connectes-toi.</p>
             </div>
-          </div>
-          <div className="hidden w-1/3 md:block">
-            <Image
-              alt="Créez votre compte"
-              className="h-full w-full rounded-xl object-cover"
-              height={768}
-              src="/images/how-it-works/1.webp"
-              width={1572}
-            />
           </div>
         </div>
 
@@ -36,18 +26,12 @@ export default function HowItWorks() {
           <div className="flex items-start gap-8 md:items-center">
             <p className="text-9xl font-bold md:text-[15rem]">2</p>
             <div className="flex flex-col justify-between gap-8">
-              <p className="text-5xl font-bold">Lancer votre premier Derkap</p>
-              <p className="text-xl">Depuis l'application, créez votre compte ou connectez-vous.</p>
+              <p className="text-5xl font-bold">Lances ton premier Derkap</p>
+              <p className="text-xl">
+                Chope un défi qui te fait marrer et envoie-le à tes potes. T’as la main : c’est toi
+                qui décides qui le reçoit.
+              </p>
             </div>
-          </div>
-          <div className="hidden w-1/3 md:block">
-            <Image
-              alt="Créez votre compte"
-              className="h-full w-full rounded-xl object-cover"
-              height={768}
-              src="/images/how-it-works/1.webp"
-              width={1572}
-            />
           </div>
         </div>
 
@@ -55,18 +39,11 @@ export default function HowItWorks() {
           <div className="flex items-start gap-8 md:items-center">
             <p className="text-9xl font-bold md:text-[15rem]">3</p>
             <div className="flex flex-col justify-between gap-8">
-              <p className="text-5xl font-bold">Créez votre compte</p>
-              <p className="text-xl">Depuis l'application, créez votre compte ou connectez-vous.</p>
+              <p className="text-5xl font-bold">Mate les réponses et rigole.</p>
+              <p className="text-xl">
+                Tes potes ont joué le jeu ? Ouvre l’appli, tu vas pas être déçu.
+              </p>
             </div>
-          </div>
-          <div className="hidden w-1/3 md:block">
-            <Image
-              alt="Créez votre compte"
-              className="h-full w-full rounded-xl object-cover"
-              height={768}
-              src="/images/how-it-works/1.webp"
-              width={1572}
-            />
           </div>
         </div>
       </div>
