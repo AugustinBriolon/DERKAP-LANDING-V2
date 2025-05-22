@@ -92,8 +92,8 @@ export default function NavBar() {
 
             <div className="nav-button">
               <Button
-                icon="/icons/download.svg"
                 href="https://apps.apple.com/fr/app/derkap/id6741578374"
+                icon="/icons/download.svg"
                 asLink
                 boxShadow
               >

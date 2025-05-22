@@ -76,7 +76,7 @@ export default function Cursor() {
   return (
     <div
       ref={cursorRef}
-      className="pointer-events-none fixed -z-10 h-80 w-80 rounded-full opacity-0 blur-xl"
+      className="pointer-events-none fixed -z-10 hidden h-80 w-80 rounded-full opacity-0 blur-xl md:block"
       style={{
         background:
           'radial-gradient(circle at center, rgba(151, 71, 255, 0.4) 0%, transparent 60%)',

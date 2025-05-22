@@ -12,6 +12,7 @@ export default function Button({
   asLink = false,
   href = '#',
   position = 'left',
+  soon = false,
 }: {
   children?: React.ReactNode;
   icon?: string;
@@ -21,6 +22,7 @@ export default function Button({
   asLink?: boolean;
   href?: string;
   position?: 'left' | 'right';
+  soon?: boolean;
 }) {
   const buttonContent = (
     <>
@@ -57,9 +59,15 @@ export default function Button({
         outline && 'border-white-second border bg-transparent text-white',
         boxShadow && 'box-shadow',
         className,
+        soon && 'relative cursor-wait',
       )}
     >
       {buttonContent}
+      {soon && (
+        <div className="bg-primary absolute -top-4 right-1/2 z-[-1] flex translate-x-1/2 items-center justify-center rounded-full px-1.5 py-0.5">
+          <p className="text-xs whitespace-nowrap text-white">Bientôt disponible</p>
+        </div>
+      )}
     </div>
   );
 }

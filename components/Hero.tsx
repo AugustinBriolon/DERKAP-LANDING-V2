@@ -96,15 +96,15 @@ export default function Hero() {
           </h2>
           <div ref={buttonsRef} className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <Button
-              icon="/icons/apple.svg"
               href="https://apps.apple.com/fr/app/derkap/id6741578374"
+              icon="/icons/apple.svg"
               asLink
               boxShadow
             >
-              Download for IOS
+              Télécharger pour IOS
             </Button>
-            <Button className="cursor-wait" icon="/icons/google.svg" outline>
-              Comming soon for Android
+            <Button icon="/icons/google.svg" outline soon>
+              Télécharger pour Android
             </Button>
           </div>
         </div>
