@@ -70,7 +70,7 @@ export default function Testimonials() {
 
   return (
     <Section
-      className="flex h-screen flex-col items-start justify-start gap-8 overflow-hidden pt-32"
+      className="flex h-fit min-h-screen flex-col items-start justify-start gap-8 pt-32"
       id="temoignages"
     >
       <div className="space-y-2">
@@ -83,7 +83,7 @@ export default function Testimonials() {
 
       <div className="mt-8 flex justify-center gap-4">
         <button
-          className="bg-black-second cursor-pointer rounded-full border-t-3 border-t-white/10 px-4 py-2"
+          className="cursor-pointer rounded-full border-t-3 border-t-white/10 bg-black px-4 py-2"
           onClick={handlePrevious}
         >
           <svg
@@ -97,7 +97,7 @@ export default function Testimonials() {
           </svg>
         </button>
         <button
-          className="bg-black-second cursor-pointer rounded-full border-t-3 border-t-white/10 px-4 py-2"
+          className="cursor-pointer rounded-full border-t-3 border-t-white/10 bg-black px-4 py-2"
           onClick={handleNext}
         >
           <svg
@@ -114,14 +114,14 @@ export default function Testimonials() {
 
       <div
         className={clsx(
-          'relative h-[307px] w-full',
+          'relative h-[350px] w-full overflow-hidden',
           currentIndex !== 0 &&
             'before:absolute before:top-0 before:-left-8 before:z-10 before:h-full before:w-8 before:bg-gradient-to-r before:from-black before:to-transparent before:opacity-80',
           currentIndex === testimonials.length - 1 &&
             'after:absolute after:top-0 after:-right-8 after:z-10 after:h-full after:w-8 after:bg-gradient-to-l after:from-black after:to-transparent after:opacity-80',
         )}
       >
-        <div ref={sliderRef} className="absolute flex w-fit gap-4">
+        <div ref={sliderRef} className="absolute flex w-fit cursor-grab gap-4">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}

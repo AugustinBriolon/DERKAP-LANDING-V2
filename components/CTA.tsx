@@ -69,17 +69,22 @@ export default function CTA() {
           gratuit, c'est fun, et c'est privé !
         </p>
         <div ref={buttonsRef} className="flex flex-col items-center gap-4 sm:flex-row">
-          <Button icon="/icons/apple.svg" boxShadow>
+          <Button
+            icon="/icons/apple.svg"
+            href="https://apps.apple.com/fr/app/derkap/id6741578374"
+            asLink
+            boxShadow
+          >
             Download for IOS
           </Button>
-          <Button icon="/icons/google.svg" outline className="cursor-wait">
+          <Button className="cursor-wait" icon="/icons/google.svg" outline>
             Comming soon for Android
           </Button>
         </div>
       </div>
       <div
         ref={gradientRef}
-        className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-2xl"
+        className="absolute top-1/2 left-1/2 -z-10 aspect-square w-full max-w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-xl"
         style={{
           background: 'radial-gradient(circle at center, #9747FF80 0%, transparent 100%)',
         }}

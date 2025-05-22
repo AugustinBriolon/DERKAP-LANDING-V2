@@ -11,6 +11,7 @@ export default function Button({
   className,
   asLink = false,
   href = '#',
+  position = 'left',
 }: {
   children?: React.ReactNode;
   icon?: string;
@@ -19,7 +20,20 @@ export default function Button({
   className?: string;
   asLink?: boolean;
   href?: string;
+  position?: 'left' | 'right';
 }) {
+  const buttonContent = (
+    <>
+      {icon && position === 'left' && (
+        <Image alt="icon" className="h-4 w-4 object-contain" height={20} src={icon} width={20} />
+      )}
+      {children && <span className="whitespace-nowrap">{children}</span>}
+      {icon && position === 'right' && (
+        <Image alt="icon" className="h-4 w-4 object-contain" height={20} src={icon} width={20} />
+      )}
+    </>
+  );
+
   if (asLink) {
     return (
       <Link
@@ -31,10 +45,7 @@ export default function Button({
           className,
         )}
       >
-        {icon && (
-          <Image alt="icon" className="h-4 w-4 object-contain" height={20} src={icon} width={20} />
-        )}
-        {children && <span className="whitespace-nowrap">{children}</span>}
+        {buttonContent}
       </Link>
     );
   }
@@ -48,10 +59,7 @@ export default function Button({
         className,
       )}
     >
-      {icon && (
-        <Image alt="icon" className="h-6 w-4.5 object-contain" height={20} src={icon} width={20} />
-      )}
-      {children && <span className="whitespace-nowrap">{children}</span>}
+      {buttonContent}
     </div>
   );
 }

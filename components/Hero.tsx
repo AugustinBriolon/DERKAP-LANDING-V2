@@ -95,33 +95,36 @@ export default function Hero() {
             t'a préparé l'endroit parfait pour délirer en toute liberté.
           </h2>
           <div ref={buttonsRef} className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Button icon="/icons/apple.svg" boxShadow>
+            <Button
+              icon="/icons/apple.svg"
+              href="https://apps.apple.com/fr/app/derkap/id6741578374"
+              asLink
+              boxShadow
+            >
               Download for IOS
             </Button>
-            <Button icon="/icons/google.svg" outline className="cursor-wait">
+            <Button className="cursor-wait" icon="/icons/google.svg" outline>
               Comming soon for Android
             </Button>
           </div>
         </div>
       </div>
       <div className="relative w-full">
-        <div className="relative">
-          <Image
-            ref={imageRef}
-            alt="Mockup de l'application DERKAP"
-            className="mx-auto w-2/3 md:w-1/3"
-            height={1440}
-            src="/images/hero/shot.webp"
-            width={697}
-          />
-          <div
-            ref={gradientRef}
-            className="absolute top-2/5 left-1/2 -z-10 aspect-square w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-xl"
-            style={{
-              background: 'radial-gradient(circle at center, #9747FF80 0%, transparent 100%)',
-            }}
-          />
-        </div>
+        <Image
+          ref={imageRef}
+          alt="Mockup de l'application DERKAP"
+          className="mx-auto w-2/3 md:w-1/3"
+          height={1440}
+          src="/images/hero/shot.webp"
+          width={697}
+        />
+        <div
+          ref={gradientRef}
+          className="absolute top-2/5 left-1/2 -z-10 aspect-square w-full max-w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-xl"
+          style={{
+            background: 'radial-gradient(circle at center, #9747FF80 0%, transparent 100%)',
+          }}
+        />
       </div>
     </Section>
   );

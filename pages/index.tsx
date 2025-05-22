@@ -15,7 +15,7 @@ export default function Home() {
       <Testimonials />
       <CTA />
       <Footer />
-      <Cursor />
+      {/* <Cursor /> */}
     </>
   );
 }

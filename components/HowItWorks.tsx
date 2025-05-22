@@ -16,7 +16,7 @@ export default function HowItWorks() {
           <div className="flex items-start gap-8 md:items-center">
             <p className="text-9xl font-bold md:text-[15rem]">1</p>
             <div className="flex flex-col justify-between gap-8">
-              <p className="text-5xl font-bold">Crée ton compte en 2-2.</p>
+              <p className="text-5xl font-bold">Crée ton compte</p>
               <p className="text-xl">Depuis l'application, crées ton compte et connectes-toi.</p>
             </div>
           </div>

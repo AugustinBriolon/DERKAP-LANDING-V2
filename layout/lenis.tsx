@@ -1,7 +1,6 @@
 import { ReactLenis } from 'lenis/react';
-import { ReactNode } from 'react';
 import { Bricolage_Grotesque } from 'next/font/google';
-import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -10,7 +9,7 @@ const bricolageGrotesque = Bricolage_Grotesque({
 
 function SmoothScrolling({ children }: { children: ReactNode }) {
   return (
-    <div className={clsx(bricolageGrotesque.className, 'min-w-screen')}>
+    <div className={bricolageGrotesque.className}>
       <ReactLenis options={{ lerp: 0.1, duration: 1.5 }} root>
         {children}
       </ReactLenis>

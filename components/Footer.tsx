@@ -33,14 +33,16 @@ export default function Footer() {
         </div>
 
         <div className="col-span-1 col-start-4 row-start-2 flex items-center gap-2">
-          <p className="text-white-second text-lg">derkap.dev@gmail.com</p>
           <Button
-            className="aspect-square !px-2 !py-1"
+            className=""
             href="mailto:derkap.dev@gmail.com"
             icon="/icons/email.svg"
+            position="right"
             asLink
-            boxShadow
-          />
+            outline
+          >
+            derkap.dev@gmail.com
+          </Button>
         </div>
 
         <div className="bg-white-second col-span-4 row-start-3 h-px w-full rounded-full"></div>
