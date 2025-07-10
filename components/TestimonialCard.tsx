@@ -12,7 +12,7 @@ export default function TestimonialCard({
   image: string;
 }) {
   return (
-    <div className="flex w-sm flex-col items-start justify-start gap-4 rounded-2xl border-t-3 border-t-white/10 bg-black p-6 md:w-lg">
+    <div className="flex w-sm flex-col items-start justify-start gap-4 rounded-2xl border-t-3 border-t-white/10 bg-black/40 p-6 backdrop-blur-md select-none md:w-lg">
       <div className="flex">
         {Array.from({ length: 5 }).map((_, index) => (
           <svg

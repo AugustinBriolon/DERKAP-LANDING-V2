@@ -47,6 +47,7 @@ export default function Testimonials() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const buttonContainerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -95,6 +96,12 @@ export default function Testimonials() {
         duration: 0.8,
         stagger: 0.02,
         ease: 'power1.out',
+      })
+      .from([buttonContainerRef.current, sliderRef.current], {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power1.out',
       });
   }, []);
 
@@ -130,7 +137,7 @@ export default function Testimonials() {
         Pas besoin de blabla, on laisse parler ceux qui s'envoient déjà des défis tous les jours.
       </p>
 
-      <div className="mt-8 flex justify-center gap-4">
+      <div ref={buttonContainerRef} className="mt-8 flex justify-center gap-4">
         <button
           className="cursor-pointer rounded-full border-t-3 border-t-white/10 bg-black px-4 py-2"
           onClick={handlePrevious}
@@ -170,7 +177,7 @@ export default function Testimonials() {
             'after:absolute after:top-0 after:-right-8 after:z-10 after:h-full after:w-8 after:bg-gradient-to-l after:from-black after:to-transparent after:opacity-80',
         )}
       >
-        <div ref={sliderRef} className="absolute flex w-fit cursor-grab gap-4">
+        <div ref={sliderRef} className="absolute flex w-fit gap-4">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
