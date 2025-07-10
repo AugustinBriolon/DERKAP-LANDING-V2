@@ -36,38 +36,33 @@ export default function Button({
     </>
   );
 
+  const commonClasses = clsx(
+    'bg-primary flex w-fit cursor-pointer items-center justify-start gap-2 rounded-full px-4.5 py-3 text-sm font-bold text-black transition-all duration-300 hover:scale-98',
+    outline && 'border-white-second border bg-transparent text-white',
+    boxShadow && 'box-shadow',
+    className,
+  );
+
   if (asLink) {
     return (
-      <Link
-        href={href}
-        className={clsx(
-          'bg-primary flex w-fit cursor-pointer items-center justify-start gap-2 rounded-full px-4.5 py-3 text-sm font-bold text-black',
-          outline && 'border-white-second border bg-transparent text-white',
-          boxShadow && 'box-shadow',
-          className,
-        )}
-      >
-        {buttonContent}
-      </Link>
+      <div>
+        <Link className={commonClasses} href={href}>
+          {buttonContent}
+        </Link>
+      </div>
     );
   }
 
   return (
-    <div
-      className={clsx(
-        'bg-primary flex w-fit cursor-pointer items-center justify-start gap-2 rounded-full px-4.5 py-3 text-sm font-bold text-black',
-        outline && 'border-white-second border bg-transparent text-white',
-        boxShadow && 'box-shadow',
-        className,
-        soon && 'relative cursor-wait',
-      )}
-    >
-      {buttonContent}
-      {soon && (
-        <div className="bg-primary absolute -top-3 right-1/2 z-[-1] flex translate-x-1/2 items-center justify-center rounded-full px-1.5 py-0.5">
-          <p className="text-xs whitespace-nowrap text-white">Bientôt disponible</p>
-        </div>
-      )}
+    <div>
+      <div className={clsx(commonClasses, soon && 'relative cursor-wait')}>
+        {buttonContent}
+        {soon && (
+          <div className="bg-primary absolute -top-3 right-1/2 z-1 flex translate-x-1/2 items-center justify-center rounded-full px-1.5 py-0.5">
+            <p className="text-xs whitespace-nowrap text-white">Bientôt disponible</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
