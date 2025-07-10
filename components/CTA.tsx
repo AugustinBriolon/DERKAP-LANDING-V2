@@ -1,8 +1,12 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import SplitText from 'gsap/dist/SplitText';
 import { useRef } from 'react';
 import Button from './Button';
 import Section from './Section';
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function CTA() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -12,25 +16,34 @@ export default function CTA() {
   const gradientRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top center',
-        end: 'bottom center',
-      },
+    const splitText = new SplitText(subtitleRef.current, {
+      type: 'words',
     });
 
-    tl.from(titleRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-    })
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 50%',
+          end: 'bottom 50%',
+          toggleActions: 'play none play reverse',
+        },
+      })
+      .from(titleRef.current, {
+        y: 50,
+        filter: 'blur(10px)',
+        opacity: 0,
+        duration: 1,
+      })
       .from(
-        subtitleRef.current,
+        splitText.words,
         {
           y: 30,
+          filter: 'blur(10px)',
           opacity: 0,
           duration: 0.8,
+          stagger: 0.02,
+          ease: 'power1.out',
         },
         '-=0.2',
       )
@@ -51,16 +64,16 @@ export default function CTA() {
           opacity: 0,
           duration: 1.5,
         },
-        '-=0.2',
+        '<',
       );
   }, []);
 
   return (
     <Section
       ref={sectionRef}
-      className="relative flex h-screen flex-col items-center justify-center gap-8 py-32"
+      className="relative flex h-screen flex-col items-center justify-center gap-8"
     >
-      <div className="relative z-10 flex flex-col items-center gap-8 text-center">
+      <div className="flex flex-col items-center gap-8 text-center">
         <h2 ref={titleRef} className="text-5xl font-bold text-white md:text-6xl lg:text-7xl">
           Prêt à <span className="text-primary text-glow">délirer</span> avec tes potes ?
         </h2>

@@ -14,7 +14,7 @@ body {
   background: var(--black);
   color: var(--white);
   line-height: 1.6;
-  font-family: var(--font-champ), sans-serif;
+  font-family: var(--font-bricolage-grotesque), sans-serif;
 }
 
 *::selection {

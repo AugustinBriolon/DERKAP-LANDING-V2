@@ -64,7 +64,7 @@ export default function Button({
     >
       {buttonContent}
       {soon && (
-        <div className="bg-primary absolute -top-4 right-1/2 z-[-1] flex translate-x-1/2 items-center justify-center rounded-full px-1.5 py-0.5">
+        <div className="bg-primary absolute -top-3 right-1/2 z-[-1] flex translate-x-1/2 items-center justify-center rounded-full px-1.5 py-0.5">
           <p className="text-xs whitespace-nowrap text-white">Bientôt disponible</p>
         </div>
       )}

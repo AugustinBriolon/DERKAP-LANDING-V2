@@ -5,8 +5,13 @@ import { useRef } from 'react';
 import Button from './Button';
 
 export default function NavBar() {
-  const navRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
+  const navRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const encreRefs = {
+    how: useRef(null),
+    testimonials: useRef(null),
+  };
 
   const scrollToNextSection = (id: string) => {
     if (lenis) {
@@ -15,36 +20,46 @@ export default function NavBar() {
   };
 
   useGSAP(() => {
+    gsap.set([encreRefs.how.current, encreRefs.testimonials.current], {
+      display: 'none',
+    });
+    gsap.set(navRef.current, {
+      width: '300px',
+      display: 'block',
+    });
+
     const tl = gsap.timeline();
 
-    tl.fromTo(
-      '.nav-item',
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: 'power2.inOut',
-      },
-    );
-
-    tl.fromTo(
-      '.nav-button',
-      {
-        scale: 0,
-        opacity: 0,
-      },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 1,
-        ease: 'elastic.out(1,1)',
-      },
-    );
+    tl.from(navRef.current, {
+      scale: 0.5,
+      duration: 0.5,
+      ease: 'power1.out',
+    })
+      .to(
+        navRef.current,
+        {
+          width: '100%',
+          duration: 0.8,
+          ease: 'power2.out',
+        },
+        '<+0.4',
+      )
+      .fromTo(
+        [encreRefs.how.current, encreRefs.testimonials.current],
+        {
+          y: 30,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          display: 'block',
+          duration: 0.5,
+          stagger: 0.1,
+          ease: 'power1.out',
+        },
+        '<+0.6',
+      );
   }, []);
 
   return (
@@ -53,11 +68,11 @@ export default function NavBar() {
       <div className="fixed top-0 left-0 z-50 w-full px-4 py-4 md:px-8">
         <nav
           ref={navRef}
-          className="mx-auto w-full max-w-7xl rounded-full border-t-3 border-t-white/10 bg-black py-3 pr-4 pl-6"
+          className="mx-auto hidden w-full max-w-7xl rounded-full border-t-3 border-t-white/10 bg-black py-3 pr-4 pl-6"
         >
           <div className="flex items-center justify-between">
             <div className="overflow-hidden">
-              <div className="nav-item">
+              <div ref={titleRef}>
                 <p
                   className="cursor-pointer text-2xl font-bold text-white"
                   onClick={() => scrollToNextSection('#hero')}
@@ -69,7 +84,7 @@ export default function NavBar() {
 
             <div className="hidden items-center space-x-8 md:flex">
               <div className="overflow-hidden">
-                <div className="nav-item">
+                <div ref={encreRefs.how}>
                   <p
                     className="text-white-second cursor-pointer text-lg transition-all duration-300 hover:text-white"
                     onClick={() => scrollToNextSection('#comment-ca-marche')}
@@ -79,7 +94,7 @@ export default function NavBar() {
                 </div>
               </div>
               <div className="overflow-hidden">
-                <div className="nav-item">
+                <div ref={encreRefs.testimonials}>
                   <p
                     className="text-white-second cursor-pointer text-lg transition-all duration-300 hover:text-white"
                     onClick={() => scrollToNextSection('#temoignages')}
@@ -90,7 +105,7 @@ export default function NavBar() {
               </div>
             </div>
 
-            <div className="nav-button">
+            <div>
               <Button
                 href="https://apps.apple.com/fr/app/derkap/id6741578374"
                 icon="/icons/download.svg"

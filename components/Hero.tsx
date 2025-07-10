@@ -1,12 +1,13 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import SplitText from 'gsap/SplitText';
+import Image from 'next/image';
 import { useRef } from 'react';
 import Button from './Button';
 import Section from './Section';
-import Image from 'next/image';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function Hero() {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -20,60 +21,135 @@ export default function Hero() {
     const tl = gsap.timeline({
       defaults: { ease: 'power2.out' },
     });
+    const mm = gsap.matchMedia();
+    const split = SplitText.create(titleRef.current, {
+      type: 'words',
+    });
+    const split2 = SplitText.create(subtitleRef.current, {
+      type: 'lines',
+    });
 
-    tl.from(titleRef.current, {
+    tl.from(split.words, {
+      delay: 1,
+      stagger: 0.05,
+      filter: 'blur(10px)',
       y: 50,
       opacity: 0,
       duration: 1,
     })
       .from(
-        subtitleRef.current,
+        split2.lines,
         {
-          y: 30,
+          stagger: 0.2,
+          filter: 'blur(10px)',
           opacity: 0,
+          y: 30,
+          ease: 'power2.out',
           duration: 0.8,
         },
-        '-=0.2',
+        '<',
       )
       .from(
         buttonsRef.current?.children || [],
         {
-          y: 20,
+          scale: 0,
           opacity: 0,
-          duration: 0.6,
+          duration: 1,
           stagger: 0.2,
+          ease: 'elastic.out(1,1)',
         },
-        '-=0.2',
+        '<+0.5',
       )
       .from(
         imageRef.current,
         {
           y: 20,
           opacity: 0,
-          duration: 0.6,
+          ease: 'power1.out',
+          duration: 1,
         },
-        '-=0.2',
+        '<+0.2',
       )
       .from(
         gradientRef.current,
         {
           scale: 0,
           opacity: 0,
-          duration: 1.5,
+          ease: 'power2.out',
+          duration: 1,
         },
         '-=0.2',
       );
 
-    gsap.to(imageRef.current, {
-      y: 80,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
+    gsap.fromTo(
+      imageRef.current,
+      {
+        yPercent: 0,
       },
+      {
+        yPercent: -50,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      },
+    );
+
+    mm.add('(min-width: 799px)', () => {
+      gsap.fromTo(
+        imageRef.current,
+        {
+          yPercent: 0,
+        },
+        {
+          yPercent: -50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        },
+      );
     });
+    mm.add('(max-width: 800px)', () => {
+      gsap.fromTo(
+        imageRef.current,
+        {
+          yPercent: 0,
+        },
+        {
+          yPercent: -15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        },
+      );
+    });
+    gsap.fromTo(
+      gradientRef.current,
+      {
+        y: 0,
+      },
+      {
+        y: 100,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      },
+    );
   }, []);
 
   return (
@@ -94,7 +170,10 @@ export default function Hero() {
             Ici, c'est juste toi, tes potes, et des défis marrants que personne d'autre verra. On
             t'a préparé l'endroit parfait pour délirer en toute liberté.
           </h2>
-          <div ref={buttonsRef} className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div
+            ref={buttonsRef}
+            className="flex flex-col gap-6 sm:flex-row sm:items-center md:gap-4"
+          >
             <Button
               href="https://apps.apple.com/fr/app/derkap/id6741578374"
               icon="/icons/apple.svg"

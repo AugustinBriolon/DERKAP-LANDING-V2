@@ -1,9 +1,11 @@
 import { useGSAP } from '@gsap/react';
+import clsx from 'clsx';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import SplitText from 'gsap/dist/SplitText';
 import { useRef, useState } from 'react';
 import Section from './Section';
 import TestimonialCard from './TestimonialCard';
-import clsx from 'clsx';
 
 const testimonials = [
   {
@@ -38,7 +40,13 @@ const testimonials = [
   },
 ];
 
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
 export default function Testimonials() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLHeadingElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -59,6 +67,38 @@ export default function Testimonials() {
   };
 
   useGSAP(() => {
+    const splitText = new SplitText(descriptionRef.current, {
+      type: 'words',
+    });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 75%',
+          end: 'bottom 75%',
+          toggleActions: 'play none play reverse',
+        },
+      })
+      .from([titleRef.current, subtitleRef.current], {
+        y: 50,
+        filter: 'blur(10px)',
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.3,
+        ease: 'power2.out',
+      })
+      .from(splitText.words, {
+        y: 10,
+        filter: 'blur(10px)',
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.02,
+        ease: 'power1.out',
+      });
+  }, []);
+
+  useGSAP(() => {
     if (sliderRef.current) {
       gsap.to(sliderRef.current, {
         x: -currentIndex * (sliderRef.current.children[0]?.clientWidth || 0 + 16),
@@ -70,14 +110,23 @@ export default function Testimonials() {
 
   return (
     <Section
-      className="flex h-fit min-h-screen flex-col items-start justify-start gap-8 pt-32"
+      ref={sectionRef}
+      className="flex h-fit flex-col items-start justify-start gap-8 pt-32"
       id="temoignages"
     >
       <div className="space-y-2">
-        <h3 className="text-primary text-xl">Témoignages</h3>
-        <h2 className="text-5xl font-bold">Ce qu'ils disent de nous</h2>
+        <div className="overflow-hidden">
+          <h3 ref={titleRef} className="text-primary text-xl">
+            Témoignages
+          </h3>
+        </div>
+        <div className="overflow-hidden">
+          <h2 ref={subtitleRef} className="text-5xl font-bold">
+            Ce qu'ils disent de nous
+          </h2>
+        </div>
       </div>
-      <p className="text-white-second max-w-lg text-xl text-pretty">
+      <p ref={descriptionRef} className="text-white-second max-w-lg text-xl text-pretty">
         Pas besoin de blabla, on laisse parler ceux qui s'envoient déjà des défis tous les jours.
       </p>
 
